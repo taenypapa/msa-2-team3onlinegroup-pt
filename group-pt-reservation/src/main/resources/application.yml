@@ -1,0 +1,8 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: group-pt-reservation
+  kafka:
+    bootstrap-servers: 99.79.53.204:9092

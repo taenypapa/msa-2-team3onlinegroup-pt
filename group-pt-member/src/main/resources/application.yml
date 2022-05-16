@@ -1,0 +1,8 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: group-pt-myclass
+  kafka:
+    bootstrap-servers: 99.79.53.204:9092
