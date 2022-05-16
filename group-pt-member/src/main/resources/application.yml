@@ -1,8 +1,8 @@
 server:
-  port: 8082
+  port: 8080
 
 spring:
   application:
-    name: group-pt-myclass
+    name: group-pt-member
   kafka:
     bootstrap-servers: 99.79.53.204:9092

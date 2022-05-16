@@ -1,1 +1,9 @@
 
+server:
+  port: 8081
+
+spring:
+  application:
+    name: group-pt-message
+  kafka:
+    bootstrap-servers: 99.79.53.204:9092
