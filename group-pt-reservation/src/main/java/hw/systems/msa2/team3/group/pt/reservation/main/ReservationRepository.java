@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface ReservationRepository extends JpaRepository<ReservationEntity, Long> {
-    Optional<ReservationEntity> findFirstByStatusOrderByRegisteredAt(ReservationStatus status);
+    Optional<ReservationEntity> findFirstByMyclassIdAndStatusOrderByRegisteredAt(Long myclassId, ReservationStatus status);
     List<ReservationEntity> findByMyclassId(Long myclassId);
     List<ReservationEntity> findByMemberId(Long memberId);
 }

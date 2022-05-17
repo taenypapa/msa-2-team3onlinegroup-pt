@@ -16,13 +16,13 @@ public class ReservationService {
     private ReservationRepository reservationRepository;
     private ProducerService producerService;
 
-    public ReservationEntity insert(ReservationEntity reservationEntity) {
+    public ReservationEntity savaWithKafka(ReservationEntity reservationEntity) {
         ReservationEntity savedReservationEntity = reservationRepository.save(reservationEntity);
         producerService.sendAddReservation(savedReservationEntity);
         return savedReservationEntity;
     }
 
-    public ReservationEntity update(ReservationEntity reservationEntity) {
+    public ReservationEntity save(ReservationEntity reservationEntity) {
         return reservationRepository.save(reservationEntity);
     }
 

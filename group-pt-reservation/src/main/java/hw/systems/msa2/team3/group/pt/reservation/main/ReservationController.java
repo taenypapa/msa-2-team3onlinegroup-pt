@@ -64,11 +64,19 @@ public class ReservationController {
                 .status(ReservationStatus.REQUESTED)
                 .build();
 
-        if(reservationEntity != null && reservationEntity.getMyclassId() != null
-                && reservationEntity.getMemberId() != null) {
-            return ResponseEntity.ok().body(new ReservationResource(reservationService.insert(reservationEntity)));
+        /** 예약 대기가 있는지 확인 */
+        Optional<ReservationEntity> optionalReservationEntity = reservationReadService.findByMyclassIdAndStatus(reservationEntity.getMyclassId(), ReservationStatus.WAITED);
+
+        if(optionalReservationEntity.isPresent()) {
+            reservationEntity.setStatus(ReservationStatus.WAITED);
+            return ResponseEntity.ok().body(new ReservationResource(reservationService.save(reservationEntity)));
         } else {
-            return ResponseEntity.noContent().build();
+            if(reservationEntity != null && reservationEntity.getMyclassId() != null
+                    && reservationEntity.getMemberId() != null) {
+                return ResponseEntity.ok().body(new ReservationResource(reservationService.savaWithKafka(reservationEntity)));
+            } else {
+                return ResponseEntity.noContent().build();
+            }
         }
     }
 
@@ -82,7 +90,7 @@ public class ReservationController {
             ReservationEntity reservationEntity = optionalMemberEntity.get();
             reservationEntity.setStatus(dto.getStatus());
 
-            return ResponseEntity.ok().body(new ReservationResource(reservationService.update(reservationEntity)));
+            return ResponseEntity.ok().body(new ReservationResource(reservationService.save(reservationEntity)));
         } else {
             return ResponseEntity.noContent().build();
         }

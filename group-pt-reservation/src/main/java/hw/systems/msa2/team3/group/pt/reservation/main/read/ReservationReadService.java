@@ -2,6 +2,7 @@ package hw.systems.msa2.team3.group.pt.reservation.main.read;
 
 import hw.systems.msa2.team3.group.pt.reservation.main.ReservationEntity;
 import hw.systems.msa2.team3.group.pt.reservation.main.ReservationRepository;
+import hw.systems.msa2.team3.group.pt.reservation.main.ReservationStatus;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
@@ -15,6 +16,10 @@ import java.util.Optional;
 @Slf4j
 public class ReservationReadService {
     private ReservationRepository reservationRepository;
+
+    public Optional<ReservationEntity> findByMyclassIdAndStatus(Long myclassId, ReservationStatus status){
+        return reservationRepository.findFirstByMyclassIdAndStatusOrderByRegisteredAt(myclassId, status);
+    }
 
     @Cacheable("reservation")
     public List<ReservationEntity> findAll(){
