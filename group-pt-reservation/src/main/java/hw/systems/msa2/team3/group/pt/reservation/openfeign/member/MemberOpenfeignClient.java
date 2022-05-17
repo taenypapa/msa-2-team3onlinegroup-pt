@@ -5,7 +5,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name = "memberOpenfeignClient", url = "http://localhost:8080", configuration = MemberOpenfeignConfig.class)
+@FeignClient(name = "memberOpenfeignClient", url = "http://localhost:8080", configuration = MemberOpenfeignConfig.class
+        , fallbackFactory = MemberOpenfeignFallbackFactory.class)
 public interface MemberOpenfeignClient {
 
     @RequestMapping(method = RequestMethod.GET, value = "/members/{id}")
