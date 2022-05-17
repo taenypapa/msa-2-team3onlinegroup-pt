@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @AllArgsConstructor
 public class ProducerService {
-
     private final KafkaTemplate<String, Object> objectKafkaTemplate;
+
+    public void sendCallBackUpdatedClass() {
+
+    }
 }
