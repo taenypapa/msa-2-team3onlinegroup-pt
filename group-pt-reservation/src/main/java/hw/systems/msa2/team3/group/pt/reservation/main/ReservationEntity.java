@@ -1,4 +1,4 @@
-package hw.systems.msa2.team3.group.pt.member.main;
+package hw.systems.msa2.team3.group.pt.reservation.main;
 
 import lombok.*;
 
@@ -11,13 +11,17 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MemberEntity {
+public class ReservationEntity {
     @Id
     @GeneratedValue
     private Long id;
-    private String name;
-    private LocalDate startDate;
-    private LocalDate endDate;
+
+    private Long memberId;
+    private Long myclassId;
+
+    @Enumerated(EnumType.STRING)
+    private ReservationStatus status;
+
     private LocalDateTime registeredAt;
     private LocalDateTime lastUpdatedAt;
 
@@ -31,4 +35,5 @@ public class MemberEntity {
     public void modifiedDate() {
         this.setLastUpdatedAt(LocalDateTime.now());
     }
+
 }

@@ -18,12 +18,12 @@ import java.util.Optional;
 public class MemberReadService {
     private MemberRepository memberRepository;
 
-    @Cacheable("member")
+    //@Cacheable("member")
     public List<MemberEntity> findAvailableMember(){
         return memberRepository.findByStartDateLessThanEqualAndEndDateGreaterThanEqual(LocalDate.now(), LocalDate.now());
     }
 
-    @Cacheable(value = "member", key = "#id")
+    //@Cacheable(value = "member", key = "#id")
     public Optional<MemberEntity> findMember(Long id){
         return memberRepository.findById(id);
     }
