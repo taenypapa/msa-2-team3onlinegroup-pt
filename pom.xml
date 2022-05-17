@@ -19,7 +19,6 @@
 
 
 	<modules>
-		<module>group-pt-message</module>
 		<module>group-pt-reservation</module>
 		<module>group-pt-member</module>
 		<module>group-pt-myclass</module>

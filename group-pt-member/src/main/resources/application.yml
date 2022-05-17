@@ -5,7 +5,7 @@ spring:
   application:
     name: group-pt-member
   kafka:
-    bootstrap-servers: 99.79.53.204:9092
+    bootstrap-servers: 3.96.46.223:9092
 
   h2:
     console:
