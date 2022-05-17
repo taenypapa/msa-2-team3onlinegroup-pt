@@ -21,22 +21,27 @@ public class ReservationReadService {
         return reservationRepository.findFirstByMyclassIdAndStatusOrderByRegisteredAt(myclassId, status);
     }
 
-    @Cacheable("reservation")
+    public Optional<ReservationEntity> findByMemberIdAndMyclassId(Long memberId, Long myclassId){
+        return reservationRepository.findByMemberIdAndMyclassId(memberId, myclassId);
+    }
+
+
+    //@Cacheable("reservation")
     public List<ReservationEntity> findAll(){
         return reservationRepository.findAll();
     }
 
-    @Cacheable(value = "reservation", key = "#myclassId")
+    //@Cacheable(value = "reservation", key = "#myclassId")
     public List<ReservationEntity> findByMyclassId(Long myclassId){
         return reservationRepository.findByMyclassId(myclassId);
     }
 
-    @Cacheable(value = "reservation", key = "#memberId")
+    //@Cacheable(value = "reservation", key = "#memberId")
     public List<ReservationEntity> findByMemberId(Long memberId){
         return reservationRepository.findByMemberId(memberId);
     }
 
-    @Cacheable(value = "reservation", key = "#id")
+    //@Cacheable(value = "reservation", key = "#id")
     public Optional<ReservationEntity> findReservation(Long id){
         return reservationRepository.findById(id);
     }

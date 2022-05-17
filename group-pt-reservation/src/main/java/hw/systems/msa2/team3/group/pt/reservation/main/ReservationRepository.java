@@ -12,4 +12,5 @@ public interface ReservationRepository extends JpaRepository<ReservationEntity, 
     Optional<ReservationEntity> findFirstByMyclassIdAndStatusOrderByRegisteredAt(Long myclassId, ReservationStatus status);
     List<ReservationEntity> findByMyclassId(Long myclassId);
     List<ReservationEntity> findByMemberId(Long memberId);
+    Optional<ReservationEntity> findByMemberIdAndMyclassId(Long memberId, Long myclassId);
 }

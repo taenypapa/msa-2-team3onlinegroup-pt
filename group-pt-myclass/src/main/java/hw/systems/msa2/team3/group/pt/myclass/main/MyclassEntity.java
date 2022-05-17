@@ -17,10 +17,7 @@ public class MyclassEntity {
 	@Id
     @GeneratedValue
     private Long id;
-
-    private String classId;
     private String className;
     private int maxCnt;
     private int reserveCnt;
-    private String status;
 }

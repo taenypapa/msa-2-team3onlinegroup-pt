@@ -1,5 +1,6 @@
 package hw.systems.msa2.team3.group.pt.myclass.kafka.consumer;
 
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import hw.systems.msa2.team3.group.pt.myclass.kafka.producer.ProducerService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,13 +36,13 @@ public class UpdatedReservationListener {
                                      @Header(KafkaHeaders.OFFSET) long offset) {
     	
     	ObjectMapper objectMapper = new ObjectMapper();
-        //ModelMapper modelMapper = new ModelMapper();
+        objectMapper.registerModule(new JavaTimeModule());
     	
     	try {
             ReservationEntity result = objectMapper.readValue(in, ReservationEntity.class);
 
             if(result != null) {
-                Optional<MyclassEntity> optionalMyclassEntity = myclassReadService.findMyclass(result.getId());
+                Optional<MyclassEntity> optionalMyclassEntity = myclassReadService.findMyclass(result.getMyclassId());
                 if(optionalMyclassEntity.isPresent()) {
                 	MyclassEntity myclassEntity = optionalMyclassEntity.get();
                 	int maxCnt = myclassEntity.getMaxCnt();

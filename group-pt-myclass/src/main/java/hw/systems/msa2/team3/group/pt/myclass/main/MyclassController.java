@@ -49,13 +49,12 @@ public class MyclassController {
     public ResponseEntity<?> add(@RequestBody MyclassDto dto) {
 
     	MyclassEntity myclassEntity = MyclassEntity.builder()
-                .classId(dto.getClassId())
                 .className(dto.getClassName())
                 .maxCnt(dto.getMaxCnt())
                 .reserveCnt(dto.getReserveCnt())
                 .build();
 
-        if(myclassEntity != null && myclassEntity.getClassId() != null) {
+        if(myclassEntity != null && myclassEntity.getClassName() != null) {
             return ResponseEntity.ok().body(new MyclassResource(myclassService.save(myclassEntity)));
         } else {
             return ResponseEntity.noContent().build();

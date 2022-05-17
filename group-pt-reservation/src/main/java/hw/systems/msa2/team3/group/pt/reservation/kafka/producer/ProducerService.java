@@ -14,7 +14,7 @@ public class ProducerService {
     private final KafkaTemplate<String, Object> objectKafkaTemplate;
 
     public void sendAddReservation(ReservationEntity reservationEntity) {
-        log.info("produced: {}", reservationEntity);
+        log.info("produced: {}", reservationEntity.toString());
         this.objectKafkaTemplate.send("UPDATED-RESERVATION", reservationEntity);
     }
 }

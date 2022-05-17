@@ -13,7 +13,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class MyclassDto {
 
-    private String classId;
     private String className;
     private int maxCnt;
     private int reserveCnt;

@@ -6,6 +6,8 @@ import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 
+@Getter
+@Setter
 public class MyclassResource extends RepresentationModel<MyclassResource> {
 
     private MyclassEntity myclassEntity;

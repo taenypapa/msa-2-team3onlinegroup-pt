@@ -63,6 +63,11 @@ public class ReservationController {
                 .memberId(dto.getMemberId())
                 .status(ReservationStatus.REQUESTED)
                 .build();
+        /** 기존 예약인지 확인 */
+        Optional<ReservationEntity> savedReservationEntity = reservationReadService.findByMemberIdAndMyclassId(reservationEntity.getMemberId(), reservationEntity.getMyclassId());
+        if(savedReservationEntity.isPresent()) {
+            return ResponseEntity.ok().body(new ReservationResource(savedReservationEntity.get()));
+        }
 
         /** 예약 대기가 있는지 확인 */
         Optional<ReservationEntity> optionalReservationEntity = reservationReadService.findByMyclassIdAndStatus(reservationEntity.getMyclassId(), ReservationStatus.WAITED);

@@ -2,6 +2,7 @@ package hw.systems.msa2.team3.group.pt.reservation.kafka.consumer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import hw.systems.msa2.team3.group.pt.reservation.kafka.producer.ProducerService;
 import hw.systems.msa2.team3.group.pt.reservation.main.ReservationEntity;
 import hw.systems.msa2.team3.group.pt.reservation.main.ReservationService;
@@ -31,7 +32,7 @@ public class CallBackUpdatedClassListener {
                                      @Header(KafkaHeaders.OFFSET) long offset) {
 
         ObjectMapper objectMapper = new ObjectMapper();
-        ModelMapper modelMapper = new ModelMapper();
+        objectMapper.registerModule(new JavaTimeModule());
 
         try {
             ReservationEntity result = objectMapper.readValue(in, ReservationEntity.class);
