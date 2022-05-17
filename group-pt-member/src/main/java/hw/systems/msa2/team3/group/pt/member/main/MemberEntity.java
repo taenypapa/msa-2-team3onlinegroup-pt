@@ -2,10 +2,9 @@ package hw.systems.msa2.team3.group.pt.member.main;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter
@@ -20,6 +19,17 @@ public class MemberEntity {
     private String name;
     private LocalDate startDate;
     private LocalDate endDate;
-    private LocalDate registerDate;
-    private LocalDate lastUpdatedDate;
+    private LocalDateTime registeredAt;
+    private LocalDateTime lastUpdatedAt;
+
+    @PrePersist
+    public void setDate() {
+        this.setRegisteredAt(LocalDateTime.now());
+        this.setLastUpdatedAt(LocalDateTime.now());
+    }
+
+    @PreUpdate
+    public void modifiedDate() {
+        this.setLastUpdatedAt(LocalDateTime.now());
+    }
 }
