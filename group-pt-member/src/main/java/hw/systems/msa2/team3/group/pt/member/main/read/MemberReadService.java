@@ -20,7 +20,7 @@ public class MemberReadService {
 
     @Cacheable("availableMember")
     public List<MemberEntity> findAvailableMember(){
-        return memberRepository.findByStartDateGreaterThanEqualAndEndDateLessThanEqual(LocalDate.now(), LocalDate.now());
+        return memberRepository.findByStartDateLessThanAndEndDateGreaterThanEqual(LocalDate.now(), LocalDate.now());
     }
 
     @Cacheable("member")

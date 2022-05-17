@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
-    List<MemberEntity> findByStartDateGreaterThanEqualAndEndDateLessThanEqual(LocalDate startDate, LocalDate endDate);
+    List<MemberEntity> findByStartDateLessThanAndEndDateGreaterThanEqual(LocalDate startDate, LocalDate endDate);
 }
