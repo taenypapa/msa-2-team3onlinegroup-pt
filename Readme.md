@@ -264,6 +264,10 @@ spec:
 
 
 #### Deploy / Pipeline
+kafka 별도 구성
+
+![image](https://user-images.githubusercontent.com/88877798/168976174-852734e0-37c3-46c9-8bc7-e692305c0925.png)
+
 
 github action ci/cd
 ```
