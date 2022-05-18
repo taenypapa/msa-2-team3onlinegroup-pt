@@ -33,4 +33,4 @@ jobs:
       run: docker build . --file ./group-pt-member/Dockerfile --tag group-pt-member:latest
         
     - name: Push with docker - member
-      run: docker push cylsh3452/sample:group-pt-member
+      run: docker push cylsh3452/sample
