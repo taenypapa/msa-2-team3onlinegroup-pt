@@ -30,7 +30,19 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
         
     - name: Build with docker - member
-      run: docker build . --file ./group-pt-member/Dockerfile --tag group-pt-member:latest
+      run: docker build . --file ./group-pt-member/Dockerfile --tag cylsh3452/group-pt-member:latest
         
     - name: Push with docker - member
-      run: docker push cylsh3452/sample/group-pt-member:latest
+      run: docker push cylsh3452/group-pt-member:latest
+      
+    - name: Build with docker - member
+      run: docker build . --file ./group-pt-member/Dockerfile --tag cylsh3452/group-pt-member:latest
+        
+    - name: Push with docker - myclass
+      run: docker push cylsh3452/group-pt-myclass:latest
+      
+    - name: Build with docker - myclass
+      run: docker build . --file ./group-pt-myclass/Dockerfile --tag cylsh3452/group-pt-myclass:latest
+        
+    - name: Push with docker - reservation
+      run: docker push cylsh3452/group-pt-reservation:latest
