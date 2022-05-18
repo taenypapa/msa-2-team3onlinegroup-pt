@@ -1,0 +1,22 @@
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "group-pt-reservation"
+  labels:
+    app: "group-pt-reservation"
+  namespace: "msa2-team3"
+spec:
+  selector:
+    matchLabels:
+      app: "group-pt-reservation"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "group-pt-reservation"
+    spec:
+      containers:
+        - name: "group-pt-reservation"
+          image: "cylsh3452/group-pt-reservation:latest"
+          ports:
+            - containerPort: 8082

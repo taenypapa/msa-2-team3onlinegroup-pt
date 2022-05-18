@@ -1,0 +1,29 @@
+apiVersion: "extensions/v1beta1"
+kind: "Ingress"
+metadata:
+  name: "group-pt-ingress"
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+    -
+      http:
+        paths:
+          -
+            path: /member
+            pathType: Prefix
+            backend:
+              serviceName: group-pt-member
+              servicePort: 8080
+          -
+            path: /myclass
+            pathType: Prefix
+            backend:
+              serviceName: group-pt-myclass
+              servicePort: 8081
+          -
+            path: /reservation
+            pathType: Prefix
+            backend:
+              serviceName: group-pt-reservation
+              servicePort: 8082

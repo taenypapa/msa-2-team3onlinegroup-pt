@@ -1,0 +1,30 @@
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "group-pt-member"
+  labels:
+    app: "group-pt-member"
+spec:
+  selector:
+    matchLabels:
+      app: "group-pt-member"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "group-pt-member"
+    spec:
+      containers:
+        - name: "group-pt-member"
+          image: "cylsh3452/group-pt-member:latest"
+          ports:
+            - containerPort: 8080
+
+          readinessProbe: # 이부분!
+            httpGet:
+              path: '/members'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
