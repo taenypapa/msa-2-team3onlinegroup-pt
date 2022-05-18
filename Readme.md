@@ -316,6 +316,12 @@ jobs:
     - name: Push with docker - reservation
       run: docker push cylsh3452/group-pt-reservation:latest
 ```
+이미지 repository: docker hub
+![image](https://user-images.githubusercontent.com/88877798/168972870-1f831835-5929-4059-83fd-0de83f887b8b.png)
+
+eks 디플로이
+![image](https://user-images.githubusercontent.com/88877798/168972937-241a8a53-fb2d-4781-9cfb-459ae1ed29d7.png)
+
 
 #### Circuit Breaker
 #### Autoscale(HPA)
