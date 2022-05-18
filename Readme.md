@@ -39,6 +39,44 @@ Polyglot
 ## 구현
 #### SAGA Pattern
 #### CQRS Pattern
+ReadService 분리
+'''
+@Service
+@AllArgsConstructor
+@Slf4j
+public class ReservationReadService {
+    private ReservationRepository reservationRepository;
+
+    public Optional<ReservationEntity> findByMyclassIdAndStatus(Long myclassId, ReservationStatus status){
+        return reservationRepository.findFirstByMyclassIdAndStatusOrderByRegisteredAt(myclassId, status);
+    }
+
+    public Optional<ReservationEntity> findByMemberIdAndMyclassId(Long memberId, Long myclassId){
+        return reservationRepository.findByMemberIdAndMyclassId(memberId, myclassId);
+    }
+
+
+    //@Cacheable("reservation")
+    public List<ReservationEntity> findAll(){
+        return reservationRepository.findAll();
+    }
+
+    //@Cacheable(value = "reservation", key = "#myclassId")
+    public List<ReservationEntity> findByMyclassId(Long myclassId){
+        return reservationRepository.findByMyclassId(myclassId);
+    }
+
+    //@Cacheable(value = "reservation", key = "#memberId")
+    public List<ReservationEntity> findByMemberId(Long memberId){
+        return reservationRepository.findByMemberId(memberId);
+    }
+
+    //@Cacheable(value = "reservation", key = "#id")
+    public Optional<ReservationEntity> findReservation(Long id){
+        return reservationRepository.findById(id);
+    }
+}
+'''
 #### Correlation / Compensation(Unique Key)
 #### Request / Response (Feign Client / Sync.Async)
 #### Gateway
