@@ -22,4 +22,39 @@ jobs:
       
     - name: Build with Maven
       run: mvn --batch-mode --update-snapshots package
-      #run: docker build . --file group-pt-member/Dockerfile --tag group-pt-member:$(date +%s)
+      
+    - name: login docker hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        
+    - name: Build and push - member
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./group-pt-member/Dockerfile
+        platforms: linux/amd64
+        push: true
+        tags: group-pt-member
+        labels: $(date +%s)
+        
+    - name: Build and push - myclass
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./group-pt-myclass/Dockerfile
+        platforms: linux/amd64
+        push: true
+        tags: group-pt-myclass
+        labels: $(date +%s)
+        
+    - name: Build and push - reservation
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./group-pt-reservation/Dockerfile
+        platforms: linux/amd64
+        push: true
+        tags: group-pt-reservation
+        labels: $(date +%s)
